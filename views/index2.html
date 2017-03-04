@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Single page web app using Angularjs</title>
+	<link rel="stylesheet" href="http://localhost/ciblog/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost/ciblog/assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/ciblog/assets/css/main.css">
+    <link rel="stylesheet" href="http://localhost/ciblog/assets/css/add.css">
+    <!--<link rel="stylesheet" href="http://localhost/ciblog/assets/plugin/font-awesome-4.7.0/css/font-awesome.min.css">-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse ">
+
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost/ciblog/">About CDO</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="http://localhost/ciblog/">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="http://localhost/ciblog/posts">Blog</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+
+
+
+
+
+
+          </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <!--<div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control mac-style" placeholder="Search">
+            <span class="input-group-addon"><span class="fa fa-search fa"></span></span>
+          </div>
+        </div>-->
+
+        <div class="form-group" style="display:inline;">
+            <div class="input-group" style="display:table; width:380px;">
+              <input autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" placeholder="Search..." type="text">
+              <span class="input-group-addon" style="width:1%;"><span class="fa fa-search fa"></span></span>
+            </div>
+        </div>
+      </form>
+
+      <!--<input type="text" name="search" placeholder="Search..">-->
+
+      <ul class="nav navbar-nav navbar-right login_box" style="display: none;">
+        <li><p class="navbar-text">Already have an account?</p></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+          <ul id="login-dp" class="dropdown-menu">
+            <li>
+               <div class="row">
+                  <div class="col-md-12">
+                    Login via
+                    <div class="social-buttons">
+                      <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                      <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                    </div>
+                                    or
+                     <form class="form" role="form" method="post" action="http://localhost/ciblog/index.php/User/Login" accept-charset="UTF-8" id="login-nav">
+                        <div class="form-group">
+                           <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                           <input type="email" class="form-control" name="email" id="email" placeholder="Email address" required>
+                        </div>
+                        <div class="form-group">
+                           <label class="sr-only" for="exampleInputPassword2">Password</label>
+                           <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                                                 <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                        </div>
+                        <div class="form-group">
+                           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                        </div>
+                        <div class="checkbox">
+                           <label>
+                           <input type="checkbox"> keep me logged-in
+                           </label>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="bottom text-center">
+                    New here ? <a href="#"><b>Join Us</b></a>
+                  </div>
+               </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+</nav>
+
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+
+
+
+                 <nav id="dashboardone" class="navbar" role="navigation" style="background-color: #f3f3f4; margin: -20px; display: none;">
+                       <div class="container" id="bs-example-navbar-collapse-1" style="">
+                          <div class="nav navbar-nav">
+                              <ul id="topNav" class="nav navbar-nav">
+                                                                          <li id="Dashboard">
+                                              <a aria-expanded="false" role="button" href="#/dashboard"><i class="fa fa-th-large"></i> Dashboard</a>
+                                          </li>
+                                                                                  <li id="Businesses">
+                                              <a aria-expanded="false" role="button" href="#/businesses"><i class="fa fa-building"></i> Businesses</a>
+                                          </li>
+                                                                                  <li id="Transactions">
+                                              <a aria-expanded="false" role="button" href="#/transactions"><i class="fa fa-clipboard"></i> Transactions</a>
+                                          </li>
+                                                                                  <li id="Users">
+                                              <a aria-expanded="false" role="button" href="#/users"><i class="fa fa-users"></i> Users</a>
+                                          </li>
+                                                                                  <li id="Subscribers">
+                                              <a aria-expanded="false" role="button" href="#/subscribers"><i class="fa fa-list-alt"></i> Subscribers</a>
+                                          </li>
+                                                                                  <li id="Settings">
+                                              <a aria-expanded="false" role="button" href="#/settings"><i class="fa fa-gear"></i> Settings</a>
+                                          </li>
+                              </ul>
+                              <ul class="nav navbar-nav navbar-right" style="">
+                                  <li style="margin-left:325px;"><a href="#">Howdy admin !</a></li>
+                                  <li><a href="http://localhost/ciblog/index.php"><i class="fa fa-power-off" style="margin: 5px 0px 0px -20px;"></i></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </nav>
+ 
+
+
+
+
+
+
+
+    <div class="container">
+
+   
+		<div id="signupmain"  class="container" style="margin-top:-150px;">
+
+
+			<div class="row main justify-content-md-center">
+
+		        <div class="col-md-4 top_margin" style="margin-top:70px;">
+	 
+					<div  class="col">
+						<div class="panel-heading">
+			                <div class="panel-title text-center">
+			               		<h1 class="title">Sign Up</h1>
+			               		<!--<hr />-->
+			               	</div>
+			            </div>
+						<div class="main-login main-center">
+							<form class="form-horizontal" method="post" action ="http://localhost/ciblog/index.php/User/Save">
+								
+								<div class="form-group">
+									<label for="name" class="cols-sm-2 control-label">Your Name</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="email" class="cols-sm-2 control-label">Your Email</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="username" class="cols-sm-2 control-label">Username</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="password" class="cols-sm-2 control-label">Password</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+											<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+											<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group ">
+									<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+								</div>
+								
+							</form>
+						</div>
+
+					</div><!--\.col-->
+
+
+		       	</div>
+
+
+
+
+		    <div>
+		        <div class="col top_margin">
+		        	<div class="" style="color:white; "><h3 class="title">Latest Post</h3></div>
+		        </div>
+		        <div class="col-md-8 new_article_body" style="background-color: white; border-radius: 6px;">
+                 	<center><h1><strong id="blog_title"></strong></h1></center>
+		        	<br />
+
+
+</p>
+		        </div>
+
+		   		</div>
+			</div><!--\.main-->
+		</div>
+
+
+ <!--dashboard main content -->
+
+      <div id="workone" class="wrapper wrapper-content">
+          <div class="container">
+                        
+                        <!-- uiView:  -->
+              <div ui-view="" class="ng-scope"><style type="text/css" class="ng-scope">
+    
+
+    .terrigal-userStatus_toggle {
+        font-size: 30px; 
+        color: #42a5f5; 
+        cursor: pointer;
+    }
+
+    .terrigal-userStatus_label {
+        position: relative;
+        right: 5px;
+        bottom: 5px;
+    }
+
+    #pagination-actions {
+        position: relative;
+        top: 20px;
+    }
+</style>
+
+<div class="row ng-scope">
+<div class="col-lg-12">
+    <div id="dashboardResponse-alert" class="text-center" style="display: none; cursor: pointer;" ng-click="">
+        <i class=""></i> 
+    </div>
+</div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading ng-scope">
+<div class="col-lg-12">
+    <h2>Dashboard</h2>
+    <ol class="breadcrumb">
+        <li class="active">
+            <strong>Home</strong>
+        </li>
+    </ol>
+</div>
+</div>
+
+<div class="row wrapper border-bottom white-bg ng-scope" style="padding: 20px;">
+<div class="col-lg-12">
+    <!-- Total businesses -->
+    <div class="col-lg-3">
+        <div class="widget style1 navy-bg" style="background-color: #1ab394">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-building fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Businesses</span>
+                    <h2 class="font-bold ng-binding">1322</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total clients -->
+    <div class="col-lg-3">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-users fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Clients</span>
+                    <h2 class="font-bold ng-binding">1331</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total visitors -->
+    <div class="col-lg-3">
+        <div class="widget style1 red-bg">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-globe fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Visitors</span>
+                    <h2 class="font-bold ng-binding">0</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total subscribers -->
+    <div class="col-lg-3">
+        <div class="widget style1 yellow-bg">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-list-alt fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Subscribers</span>
+                    <h2 class="font-bold ng-binding">169</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <!-- Profile card -->
+    <div class="col-lg-6">
+        <div class="widget-head-color-box navy-bg p-lg text-center" style="background-image: url('http://1.bp.blogspot.com/_LfQDQDf_x_4/TKMAbRev7hI/AAAAAAAACOk/NEjZqIKjAhY/s1600/Dark-Forest-the-dark-side-of-everything-5587682-1023-818.jpg'); background-size: 100% 310px;">
+            <div class="m-b-md">
+                <h2 class="font-bold no-margins ng-binding">
+                    Admin Terrigal
+                </h2>
+                <small class="ng-binding">ADMIN</small>
+            </div>
+            <img ng-src="https://s-media-cache-ak0.pinimg.com/originals/77/ca/3e/77ca3e7c296fe7b35d4b99c2b2c79551.jpg" class="img-circle circle-border m-b-md" width="30%" height="130" alt="profile" src="https://s-media-cache-ak0.pinimg.com/originals/77/ca/3e/77ca3e7c296fe7b35d4b99c2b2c79551.jpg">
+            <div>
+                <span>100 Tweets</span> |
+                <span>350 Following</span> |
+                <span>610 Followers</span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>		</div>
+		<!-- include javascript, jQuery FIRST -->
+		<script src="http://localhost/ciblog/assets/js/jquery1.10.2.min.js"></script>
+		<script src="http://localhost/ciblog/assets/js/bootstrap3.0.0.min.js"></script>
+		<script>
+            CKEDITOR.replace( 'editor1' );
+
+        </script>
+
+
+
+<script>
+function show_latest_post(){
+
+    $(function(){
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost/ciblog/hello', 
+            dataType: "text",  
+            cache:false,
+            beforeSend: function(){
+                //alert('Testing ajax!');
+            },
+            success: 
+              function(data){
+                $('.new_article_body').html(data);
+                //alert(data);  //as a debugging message.
+            }
+        });// you have missed this bracket
+    });
+}
+
+</script>
+<script>$('.login_box').show();</script><script>$('#workone').hide();</script><script>$('body').css('background-image', "url('http://localhost/ciblog/assets/images/bg.jpg')");</script><script>show_latest_post();</script>
+
+</body>
+</html>
