@@ -46,11 +46,7 @@ You're gonna need to create a DB named 'nodejs' and import nodejs.sql. You can d
 Works on Linux, Mac and PC
 
 ## NOTES
-This repo still use Express 3, you might want to upgrade yourself or you can Go here (https://github.com/codetrash/rest-crud) for newest Express 
-#� �N�o�d�e�S�t�r�a�p�
-�
-�
-
+This repo still use Express 3, you might want to upgrade yourself or you can Go here (https://github.com/codetrash/rest-crud) for newest Express. 
 
 Regards,
 
